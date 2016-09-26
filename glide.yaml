@@ -1,2 +1,2 @@
-package: github.com/koudaiii/slack-notification
+package: github.com/koudaiii/slack-notifier
 import: []
