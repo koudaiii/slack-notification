@@ -33,5 +33,5 @@ func main() {
 	if err != nil {
 		fmt.Println("Unable to reach the server.")
 	}
-	defer req.Body.Close()
+	req.Body.Close()
 }
