@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+language: go
+go:
+  - '1.7'
+script:
+  - make test
+before_deploy:
+  - GOOS=linux GOARCH=amd64 make
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: make ci-docker-release
+  on:
+    branch: master
+    go: '1.7'
