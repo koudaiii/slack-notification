@@ -1,4 +1,5 @@
 NAME := slack-notification
+ORGANIZER := wantedly
 VERSION := 0.1.0
 REVISION := $(shell git rev-parse --short HEAD)
 
@@ -7,7 +8,7 @@ LDFLAGS := -ldflags="-s -w -X \"main.Version=$(VERSION)\" -X \"main.Revision=$(R
 DIST_DIRS := find * -type d -exec
 
 DOCKER_REPOSITORY := quay.io
-DOCKER_IMAGE_NAME := $(DOCKER_REPOSITORY)/wantedly/slack-notification
+DOCKER_IMAGE_NAME := $(DOCKER_REPOSITORY)/$(ORGANIZER)/$(NAME)
 DOCKER_IMAGE_TAG ?= latest
 DOCKER_IMAGE := $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
@@ -18,7 +19,7 @@ bin/$(NAME): deps
 
 .PHONY: ci-docker-release
 ci-docker-release: docker-build
-	@docker login -e="$(DOCKER_QUAY_EMAIL)" -u="$(DOCKER_QUAY_USERNAME)" -p="$(DOCKER_QUAY_PASSWORD)" $(DOCKER_REPOSITORY)
+	@docker login -e="$(DOCKER_EMAIL)" -u="$(DOCKER_USERNAME)" -p="$(DOCKER_PASSWORD)" $(DOCKER_REPOSITORY)
 	docker push $(DOCKER_IMAGE)
 
 .PHONY: clean
