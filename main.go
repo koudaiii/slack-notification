@@ -28,6 +28,9 @@ func main() {
 	//Post JSON payload to the Webhook URL
 	client := http.Client{}
 	req, err := http.NewRequest("POST", config.SlackWebhookURL, bytes.NewBufferString(json))
+	if err != nil {
+		fmt.Println("Unable to parse slack webhook url.")
+	}
 	req.Header.Set("Content-Type", "application/json")
 	_, err = client.Do(req)
 	if err != nil {
