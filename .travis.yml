@@ -1,17 +1,32 @@
-sudo: required
-services:
-  - docker
 language: go
 go:
   - '1.7'
+services:
+  - docker
+
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:masterminds/glide'
+    packages:
+      - glide
+
+env:
+  global:
+    - REPO=quay.io/wantedly/slack-notification
+    - BRANCH=$(echo $TRAVIS_BRANCH | sed -e "s,/,_,g;")
+    - TAG=$BRANCH-${TRAVIS_COMMIT::8}
+
+before_script:
+  - glide install
+
 script:
-  - make test
-before_deploy:
-  - GOOS=linux GOARCH=amd64 make
+  - echo ${TRAVIS_COMMIT::8}
+  - make ci-build
+
 deploy:
-  provider: script
   skip_cleanup: true
-  script: make ci-docker-release
+  provider: script
+  script: make deploy
   on:
-    branch: master
-    go: '1.7'
+    all_branches: true
