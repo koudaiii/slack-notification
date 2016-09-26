@@ -17,8 +17,8 @@ ci-build:
 deploy:
 	@./script/deploy
 
-.PHONY: build
-build: deps
+.PHONY: bin/$(NAME)
+bin/$(NAME): deps
 	go build $(LDFLAGS) -o bin/$(NAME)
 
 .PHONY: install
