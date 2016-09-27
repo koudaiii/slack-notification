@@ -1,2 +1,4 @@
 package: github.com/wantedly/slack-notifier
-import: []
+import:
+- package: github.com/kelseyhightower/envconfig
+- package: github.com/pkg/errors

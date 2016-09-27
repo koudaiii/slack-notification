@@ -1,4 +1,8 @@
-hash: 666231ca6bce15715ef7bf44c83993abee5a6633d8c802c433c14806a79dd8fb
-updated: 2016-09-27T10:33:53.826017164+09:00
-imports: []
+hash: 361a5e1265e17b12b1db96eaad7da3c3543b28778bd59a6d0fad69e7bdffeb46
+updated: 2016-09-27T10:53:48.801493136+09:00
+imports:
+- name: github.com/kelseyhightower/envconfig
+  version: 13674b2d056fb658a00ba3f36e78043ced07c924
+- name: github.com/pkg/errors
+  version: a887431f7f6ef7687b556dbf718d9f351d4858a0
 devImports: []
