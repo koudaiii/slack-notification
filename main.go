@@ -33,18 +33,11 @@ func main() {
 		os.Exit(0)
 	}
 
-	//Incoming Webhook URL
-	config, err := LoadConfig()
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-
 	//Form JSON payload to send to Slack
 	json := `{"text": "` + args + `"}`
 	//Post JSON payload to the Webhook URL
 	client := http.Client{}
-	req, err := http.NewRequest("POST", config.SlackWebhookURL, bytes.NewBufferString(json))
+	req, err := http.NewRequest("POST", os.Getenv("SLACK_WEBHOOK_URL"), bytes.NewBufferString(json))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
