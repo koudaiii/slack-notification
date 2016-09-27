@@ -1,4 +1,4 @@
 package: github.com/wantedly/slack-notifier
 import:
-- package: github.com/kelseyhightower/envconfig
 - package: github.com/pkg/errors
+- package: github.com/joho/godotenv
