@@ -19,7 +19,7 @@ func main() {
 	//Incoming Webhook URL
 	config, err := LoadConfig()
 	if err != nil {
-		fmt.Println("%v", err)
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
@@ -29,12 +29,14 @@ func main() {
 	client := http.Client{}
 	req, err := http.NewRequest("POST", config.SlackWebhookURL, bytes.NewBufferString(json))
 	if err != nil {
-		fmt.Println("Unable to parse slack webhook url.")
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 	req.Header.Set("Content-Type", "application/json")
 	_, err = client.Do(req)
 	if err != nil {
-		fmt.Println("Unable to reach the server.")
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 	req.Body.Close()
 }
