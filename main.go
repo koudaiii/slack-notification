@@ -12,7 +12,7 @@ func main() {
 	// input send text
 	args := strings.Join(os.Args[1:], " ")
 	if args == "" {
-		fmt.Println("usage: slack-notifier <TEXT>")
+		fmt.Fprintln(os.Stdout, "usage: slack-notifier <TEXT>")
 		os.Exit(0)
 	}
 
