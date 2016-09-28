@@ -5,7 +5,7 @@ services:
 - docker
 env:
   global:
-  - REPO=quay.io/wantedly/slack-notification
+  - REPO=quay.io/wantedly/slack-notifier
   - BRANCH=$(echo $TRAVIS_BRANCH | sed -e "s,/,_,g;")
   - TAG=$BRANCH-${TRAVIS_COMMIT::8}
   - secure: HLV1zIuwvyVRmX9xeHqmjgOE3jdH8dCo7bIER+GCVrlUVy0mqoW/4y/bMfRkgxcAH7yTSbDl1BsPKOyhlN+k5pM2bQRO2z4wL3tFLk0WtUJEa6VHamsndyM/RU4Q9LIWqwPq7ZLKmT28SL3JHpY7LrnEHW51ah6T9ss/NSNTAx9uN6g2HFzON0JyJqiIGoXQLwqBVSHa75D/O1eHKJNr/bNn3qMSWYGmWcGeu0pGtnGVG6rt5lvQvX9P33OasrgBPiuoqQBNdBbMqjznZJwj9CpBmjcBFLEaGIy8UBY5VXa7fdF7t3UKuVLVnd/WSi6wNa2ImNBrJVMQx21An7TtK/yAjl6Ml+yjWDseqeMS9arIOlSIk+7D8abdSmYOrKJEISrslRrUo2jJjT1lvVXD7A9gUHLZtruIAxPFLeY1NLJGpfhd0U66YwWT7CrhWoGmlt0lv1qeu9Us57mTLc10SWSIQV4c7mnGPdj2WhTcwOXvOaChFtXPonnhwWkqH4gGAdcOGRp0o54jFSBha33GGOv34xJR5jE/GFXJtyjC97N3+k+UYxyF7AwEvRxj5/RL9pKfRJbK8L4N5IJMGK2FE6m9gHKC1Bo+I0DFvy47g5Kb1yRc2kFe5uO9vqPrgO+YjKuyMmUzzuasXNFw8kzG4K7LbLjm+fkKmE3FuBykoK8=
