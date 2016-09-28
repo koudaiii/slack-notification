@@ -1,4 +1,4 @@
-NAME := slack-notification
+NAME := slack-notifier
 ORGANIZER := wantedly
 VERSION := 0.1.0
 REVISION := $(shell git rev-parse --short HEAD)
@@ -17,8 +17,8 @@ ci-build:
 deploy:
 	@./script/deploy
 
-.PHONY: build
-build: deps
+.PHONY: bin/$(NAME)
+bin/$(NAME): deps
 	go build $(LDFLAGS) -o bin/$(NAME)
 
 .PHONY: install

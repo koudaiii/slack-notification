@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-ENTRYPOINT ["bin/slack-notification"]
+ENTRYPOINT ["bin/slack-notifier"]
 
 # enable to access slack api by https
 RUN apk --no-cache add ca-certificates openssl
@@ -9,4 +9,4 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/
     && apk add glibc-2.23-r3.apk \
     && rm glibc-2.23-r3.apk
 
-COPY bin/slack-notification /bin/slack-notification
+COPY bin/slack-notifier /bin/slack-notifier

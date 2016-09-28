@@ -1,2 +1,2 @@
-# slack-notification
-golang slack notification
+# slack-notifier
+golang slack notifier

@@ -1,2 +1,4 @@
-package: github.com/koudaiii/slack-notification
-import: []
+package: github.com/wantedly/slack-notifier
+import:
+- package: github.com/pkg/errors
+- package: github.com/joho/godotenv
