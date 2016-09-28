@@ -10,7 +10,7 @@ DIST_DIRS := find * -type d -exec
 .DEFAULT_GOAL := bin/$(NAME)
 
 .PHONY: ci-build
-ci-build:
+ci-build: deps
 	@GOOS=linux GOARCH=amd64 go build $(LDFLAGS) -o bin/$(NAME)
 
 .PHONY: deploy
