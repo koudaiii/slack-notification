@@ -17,8 +17,8 @@ func main() {
 			os.Exit(1)
 		}
 	}
-	//Incoming Webhook URL
 
+	//Incoming Webhook URL
 	if os.Getenv("SLACK_WEBHOOK_URL") == "" {
 		fmt.Fprintln(os.Stderr, "Please provide 'SLACK_WEBHOOK_URL' through environment")
 		os.Exit(1)
