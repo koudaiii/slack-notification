@@ -10,21 +10,19 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func LoadConfig() {
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+func main() {
+	if _, err := os.Stat(".env"); err == nil {
+		if err2 := godotenv.Load(); err2 != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
 	}
+	//Incoming Webhook URL
+
 	if os.Getenv("SLACK_WEBHOOK_URL") == "" {
 		fmt.Fprintln(os.Stderr, "Please provide 'SLACK_WEBHOOK_URL' through environment")
 		os.Exit(1)
 	}
-}
-
-func main() {
-	//Incoming Webhook URL
-	LoadConfig()
 
 	// input send text
 	args := strings.Join(os.Args[1:], " ")
