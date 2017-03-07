@@ -25,21 +25,22 @@ func main() {
 		os.Exit(1)
 	}
 
-	// input send text
-	args := strings.Join(os.Args[1:], " ")
-	if args == "" {
-		fmt.Fprintln(os.Stdout, "usage: slack-notifier <TEXT>")
-		os.Exit(0)
-	}
-
 	//Form JSON payload to send to Slack
 	var json string
-	if buf, err := ioutil.ReadAll(os.Stdin); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	} else if len(buf) > 0 {
-		json = string(buf)
+	args := strings.Join(os.Args[1:], " ")
+	if args == "" {
+		// use stdin as post data
+		if buf, err := ioutil.ReadAll(os.Stdin); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		} else if len(buf) > 0 {
+			json = string(buf)
+		} else {
+			fmt.Fprintln(os.Stdout, "usage: slack-notifier <TEXT>")
+			os.Exit(0)
+		}
 	} else {
+		// use os.Args as post message
 		json = `{"text": "` + args + `"}`
 	}
 
