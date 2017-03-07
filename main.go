@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
@@ -32,7 +33,16 @@ func main() {
 	}
 
 	//Form JSON payload to send to Slack
-	json := `{"text": "` + args + `"}`
+	var json string
+	if buf, err := ioutil.ReadAll(os.Stdin); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	} else if len(buf) > 0 {
+		json = string(buf)
+	} else {
+		json = `{"text": "` + args + `"}`
+	}
+
 	//Post JSON payload to the Webhook URL
 	client := http.Client{}
 	req, err := http.NewRequest("POST", os.Getenv("SLACK_WEBHOOK_URL"), bytes.NewBufferString(json))
