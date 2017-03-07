@@ -36,8 +36,8 @@ func main() {
 		} else if len(buf) > 0 {
 			json = string(buf)
 		} else {
-			fmt.Fprintln(os.Stdout, "usage: slack-notifier <TEXT>")
-			os.Exit(0)
+			fmt.Fprintln(os.Stderr, "usage: slack-notifier <TEXT>")
+			os.Exit(1)
 		}
 	} else {
 		// use os.Args as post message
