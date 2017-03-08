@@ -30,15 +30,16 @@ func main() {
 	args := strings.Join(os.Args[1:], " ")
 	if args == "" {
 		// use stdin as post data
-		if buf, err := ioutil.ReadAll(os.Stdin); err != nil {
+		buf, err := ioutil.ReadAll(os.Stdin)
+		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
-		} else if len(buf) > 0 {
-			json = string(buf)
-		} else {
+		}
+		if len(buf) == 0 {
 			fmt.Fprintln(os.Stderr, "usage: slack-notifier <TEXT>")
 			os.Exit(1)
 		}
+		json = string(buf)
 	} else {
 		// use os.Args as post message
 		json = `{"text": "` + args + `"}`
