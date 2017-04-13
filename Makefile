@@ -64,5 +64,5 @@ release:
 	git push origin $(VERSION)
 
 .PHONY: test
-test: deps
+test:
 	go test -v `glide novendor`
