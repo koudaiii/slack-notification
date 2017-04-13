@@ -23,6 +23,9 @@ script:
   - echo ${TRAVIS_COMMIT::8}
   - make ci-build
   - make test
+before_deploy:
+  - make cross-build
+  - make dist
 deploy:
   - skip_cleanup: true
     provider: script
