@@ -2,3 +2,5 @@
 .env
 slack-notifier
 /vendor
+/dist
+/bin
