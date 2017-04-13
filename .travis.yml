@@ -16,8 +16,16 @@ script:
   - make ci-build
   - make test
 deploy:
-  skip_cleanup: true
-  provider: script
-  script: make deploy
-  on:
-    all_branches: true
+  - skip_cleanup: true
+    provider: script
+    script: make deploy
+    on:
+      all_branches: true
+  - provider: releases
+    skip_cleanup: true
+    api_key: $GITHUB_TOKEN
+    file_glob: true
+    file: 'dist/*.{tar.gz,zip}'
+    on:
+      tags: true
+      go: '1.8'
